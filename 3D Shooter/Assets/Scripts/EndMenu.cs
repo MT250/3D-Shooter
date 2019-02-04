@@ -5,12 +5,7 @@ public class EndMenu : MonoBehaviour
 {
     public void End()
     {
-        SaveScore();
+        game_manager.instance.SaveData(game_manager.instance.score);
         SceneManager.LoadScene("Scenes/Menu");
-    }
-
-    public void SaveScore()
-    {
-        //game_manager.instance.score
     }
 }

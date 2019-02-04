@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -44,4 +42,16 @@ public class PlayerManager : MonoBehaviour
         curPlayerHealth -= _damage;
     }
 
+    public void Heal(float _healAmount)
+    {
+        if (curPlayerHealth == 100f)
+        {
+     
+        }
+        else if (curPlayerHealth  < 100f)
+        {
+            curPlayerHealth += _healAmount;
+            if (curPlayerHealth > 100f) { curPlayerHealth = 100f; }
+        }
+    }
 }

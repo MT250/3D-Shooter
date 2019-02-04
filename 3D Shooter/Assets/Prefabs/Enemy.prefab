@@ -115,6 +115,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   killReward: 25
+  drop: 1
+  medkitPrefab: {fileID: 1195210872, guid: 988086d404935724d9b596f458d27f56, type: 3}
+  dropChance: 5
   explodeOnDeath: 0
   explosionPrefab: {fileID: 0}
 --- !u!1 &5849809879603724499

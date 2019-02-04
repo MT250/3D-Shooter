@@ -9,6 +9,9 @@ public class Gun : MonoBehaviour {
     private float range = 100f;
     [SerializeField]
     private float impactForce = 40f;
+    [SerializeField]
+    private float fireRate = 1f;
+    private float curShootCooldown; 
 
     [Header("Components")]
     [SerializeField]
@@ -21,8 +24,9 @@ public class Gun : MonoBehaviour {
     private AudioSource shootSound;
 
 	void Update () {
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Fire1") && Time.time >= curShootCooldown)
         {
+            curShootCooldown = Time.time + 1f / fireRate;
             Shoot();
         }
 	}
