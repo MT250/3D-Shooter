@@ -4,9 +4,10 @@ public class Target : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField]
-    private float health = 50f;
+    private float maxHealth = 50f;
     [SerializeField]
     private float killReward;
+
     [Space]
     [Header("Drops medkit")]
     [SerializeField]
@@ -18,21 +19,33 @@ public class Target : MonoBehaviour
     private float dropChance;
     [Space]
     [Header("Explosive")]
+
+    [SerializeField]
+    private float currentHealth;
     [SerializeField]
     private bool explodeOnDeath = false;
     [SerializeField]
     private GameObject explosionPrefab;
 
+    private void OnEnable()
+    {
+        currentHealth = maxHealth;
+    }
+
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        if (health <= 0 )
+        currentHealth -= amount;
+        if (currentHealth <= 0 )
             {
                 game_manager.instance.AddScore(killReward);
-                Destroy(gameObject);
-                //Explosion
-                if (explodeOnDeath) { Instantiate(explosionPrefab, transform.position, transform.rotation); explodeOnDeath = false; }
-                //Medkit drop
+                gameObject.SetActive(false);
+                //Will Explode ?
+                if (explodeOnDeath)
+                    {
+                        Instantiate(explosionPrefab, transform.position, transform.rotation);
+                        explodeOnDeath = false;
+                    }
+                //Will drop Medkit
                 if (drop)
                     {
                         if (Random.Range(0, 100) <= dropChance) { Instantiate(medkitPrefab, transform.position, transform.rotation); } 
@@ -40,5 +53,4 @@ public class Target : MonoBehaviour
 
             }
     }
-
 }

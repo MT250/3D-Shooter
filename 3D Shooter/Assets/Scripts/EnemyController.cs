@@ -19,7 +19,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //Set destination to players position
-        navAgent.SetDestination(target.position);
+        if (this.gameObject.activeSelf) navAgent.SetDestination(target.position);
+
         float dis = Vector3.Distance(target.position, transform.position);
         //Bite cooldown
         if (curBiteCooldown > 0) curBiteCooldown -= Time.deltaTime;
